@@ -1,8 +1,11 @@
 package com.example.chupacabra;
 
+import java.util.ArrayList;
+
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
@@ -13,11 +16,16 @@ public class MyMarket extends Activity implements OnClickListener {
 		Button myCdsButton;
 		Button myApparelButton;
 		Button myOthersButton;
+		
+		ArrayList<Friend> friendList;
+		
+		Intent thisIntent;
 	
 	 @Override
 	    public void onCreate(Bundle savedInstanceState) {
 	        super.onCreate(savedInstanceState);
 	        setContentView(R.layout.market); 
+	        thisIntent = getIntent();
 	        myBooksButton = (Button) findViewById(R.id.myBooksButton);
 	        myBooksButton.setOnClickListener(this);
 	        myCdsButton = (Button) findViewById(R.id.myCdsButton);
@@ -26,6 +34,10 @@ public class MyMarket extends Activity implements OnClickListener {
 	        myApparelButton.setOnClickListener(this);
 	        myOthersButton = (Button) findViewById(R.id.myOthersButton);
 	        myOthersButton.setOnClickListener(this);
+	        
+	        friendList = (ArrayList<Friend>) thisIntent.getSerializableExtra("friendList");
+	        for(Friend friend : friendList )
+	        	Log.d("Friend Market", friend.getName());
 	 	}
 	 	
 	 @Override
@@ -51,6 +63,7 @@ public class MyMarket extends Activity implements OnClickListener {
 	    
 	     private void handleBooksButtonClick() {
 	    	 Intent intent = new Intent(this, Books.class);
+	    	 intent.putExtra("friendList", friendList);
 	 		 startActivity(intent);
 	     }
 	 

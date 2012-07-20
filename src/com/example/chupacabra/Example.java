@@ -21,10 +21,14 @@ package com.example.chupacabra;
 
 import java.io.IOException;
 import java.io.InputStream;
+import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -38,6 +42,7 @@ import android.view.View.OnClickListener;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.chupacabra.SessionEvents.AuthListener;
 import com.example.chupacabra.SessionEvents.LogoutListener;
@@ -45,6 +50,8 @@ import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
+import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 import com.intuit.codejam.charts.BudgetPieChart;
 
 public class Example extends Activity {
@@ -66,6 +73,7 @@ public class Example extends Activity {
 	private Button getMarketButton;
 
 	private ImageView chart;
+	ArrayList<Friend> listFriend;
 	
 	private Facebook mFacebook;
 	private AsyncFacebookRunner mAsyncRunner;
@@ -129,6 +137,7 @@ public class Example extends Activity {
 				Log.e("Example", "Testing getBudgetGraph()");
 				
 				Intent intent = new Intent(context, MyMarket.class);
+				intent.putExtra("friendList", listFriend);
 				startActivity(intent);	
 			}
 
@@ -159,7 +168,8 @@ public class Example extends Activity {
 				View.VISIBLE :
 					View.INVISIBLE);
 
-
+		if (mFacebook.isSessionValid()) 
+			fillFriendList();
 		getLoanBorrow.setOnClickListener(new OnClickListener(){
 
 			public void onClick(View v){
@@ -227,6 +237,43 @@ public class Example extends Activity {
 //					View.INVISIBLE);
 	}
 
+	private void fillFriendList() {
+
+		String friendsList = null;
+		
+		try{
+			  
+			  friendsList = mFacebook.request("me/friends");
+
+			}catch(Exception e){
+			    Log.e("Error on Auth prob", " " + "SampleAuthListener" + " Exception = "+e.getMessage());
+			}
+		
+		Log.d("Friend List Check: ",friendsList);
+		
+		JSONObject json = null;
+		
+		
+        String friends = null;
+		try {
+			json = new JSONObject(friendsList);	
+			friends =  json.getString("data");
+			
+		} catch (JSONException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+		Gson gson = new Gson();
+		String jsonOutput = friends;
+		Type listType = new TypeToken<ArrayList<Friend>>(){}.getType();
+		listFriend = (ArrayList<Friend>) gson.fromJson(jsonOutput, listType);
+		
+		
+			Log.d("Name: " , "Got Friend List");
+				
+	}
+
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode,
 			Intent data) {
@@ -245,6 +292,8 @@ public class Example extends Activity {
 			getLoanBorrow.setVisibility(View.VISIBLE);
 			chart.setVisibility(View.VISIBLE);
 			getMarketButton.setVisibility(View.VISIBLE);
+			
+			fillFriendList();
 		}
 
 		public void onAuthFail(String error) {
@@ -381,4 +430,5 @@ public class Example extends Activity {
 		}
 	}
 
+	
 }

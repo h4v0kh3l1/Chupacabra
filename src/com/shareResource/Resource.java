@@ -17,7 +17,7 @@ public class Resource {
     private Person owner;
     private Set<Person> currentUsers;
 
-    Resource(String pResourceName, Person pOwner){
+    public Resource(String pResourceName, Person pOwner){
         resourceName = pResourceName;
         owner = pOwner;
         currentUsers = new HashSet<Person>();
@@ -37,4 +37,40 @@ public class Resource {
     boolean isCurrentUser(Person user) {
         return currentUsers.contains(user);
     }
+	/**
+	 * @return the resourceName
+	 */
+	public String getResourceName() {
+		return resourceName;
+	}
+	/**
+	 * @param resourceName the resourceName to set
+	 */
+	public void setResourceName(String resourceName) {
+		this.resourceName = resourceName;
+	}
+	/**
+	 * @return the owner
+	 */
+	public Person getOwner() {
+		return owner;
+	}
+	/**
+	 * @param owner the owner to set
+	 */
+	public void setOwner(Person owner) {
+		this.owner = owner;
+	}
+	/**
+	 * @return the currentUsers
+	 */
+	public Set<Person> getCurrentUsers() {
+		return currentUsers;
+	}
+	/**
+	 * @param currentUsers the currentUsers to set
+	 */
+	public void setCurrentUsers(Set<Person> currentUsers) {
+		this.currentUsers = currentUsers;
+	}
 }

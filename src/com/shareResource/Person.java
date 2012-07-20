@@ -7,10 +7,10 @@ package com.shareResource;
  * Time: 3:27 PM
  * To change this template use File | Settings | File Templates.
  */
-class Person {
+public class Person {
     private String name;
 
-    Person(String pName){
+    public Person(String pName){
         name = pName;
     }
     public String getName(){
