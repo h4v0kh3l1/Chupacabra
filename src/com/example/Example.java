@@ -48,272 +48,305 @@ import com.intuit.codejam.charts.BudgetPieChart;
 
 public class Example extends Activity {
 
-    // Your Facebook Application ID must be set before running this example
-    // See http://www.facebook.com/developers/createapp.php
-    public static final String APP_ID = "175729095772478";
+	// Your Facebook Application ID must be set before running this example
+	// See http://www.facebook.com/developers/createapp.php
+	public static final String APP_ID = "175729095772478";
 
-    private LoginButton mLoginButton;
-    private TextView mText;
-    private Button mRequestButton;
-    private Button mPostButton;
-    private Button mDeleteButton;
-    private Button mUploadButton;
-    
-    private Button getBudgetGraph;
-    private Button getSplitBill;
-    private Button getLoanBorrow;
+	private LoginButton mLoginButton;
+	private TextView mText;
+	private Button mRequestButton;
+	private Button mPostButton;
+	private Button mDeleteButton;
+	private Button mUploadButton;
 
-    private Facebook mFacebook;
-    private AsyncFacebookRunner mAsyncRunner;
-    
-    private Context context;
-    
+	private Button getBudgetGraph;
+	private Button getSplitBill;
+	private Button getLoanBorrow;
 
-    /** Called when the activity is first created. */
-    @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        context = this;
+	private Facebook mFacebook;
+	private AsyncFacebookRunner mAsyncRunner;
 
-        if (APP_ID == null) {
-            Util.showAlert(this, "Warning", "Facebook Applicaton ID must be " +
-                    "specified before running this example: see Example.java");
-        }
+	private Context context;
 
-        setContentView(R.layout.main);
-        mLoginButton = (LoginButton) findViewById(R.id.login);
-        mText = (TextView) Example.this.findViewById(R.id.txt);
-        mRequestButton = (Button) findViewById(R.id.requestButton);
-        mPostButton = (Button) findViewById(R.id.postButton);
-        mDeleteButton = (Button) findViewById(R.id.deletePostButton);
-        mUploadButton = (Button) findViewById(R.id.uploadButton);
-        
-        
-        this.getBudgetGraph = (Button) findViewById(R.id.getBudgetGraph);
-        this.getSplitBill = (Button) findViewById(R.id.getSplitBill);
-        this.getLoanBorrow = (Button) findViewById(R.id.getLoanBorrow);
-        
-        
-        
-       	mFacebook = new Facebook(APP_ID);
-       	mAsyncRunner = new AsyncFacebookRunner(mFacebook);
 
-        SessionStore.restore(mFacebook, this);
-        SessionEvents.addAuthListener(new SampleAuthListener());
-        SessionEvents.addLogoutListener(new SampleLogoutListener());
-        mLoginButton.init(this, mFacebook);
+	/** Called when the activity is first created. */
+	@Override
+	public void onCreate(Bundle savedInstanceState) {
+		super.onCreate(savedInstanceState);
+		context = this;
 
-        getBudgetGraph.setOnClickListener(new OnClickListener(){
-        	
-        	public void onClick(View v){
-        		Intent intent = new BudgetPieChart().execute(context);
-        		startActivity(intent);	
-        	}
-        	
-        });
-        
-//        
-//        getSplitBill
-//        getLoanBorrow
+		if (APP_ID == null) {
+			Util.showAlert(this, "Warning", "Facebook Applicaton ID must be " +
+			"specified before running this example: see Example.java");
+		}
 
-        
-        
-        mRequestButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-            	mAsyncRunner.request("me", new SampleRequestListener());
-            }
-        });
-        mRequestButton.setVisibility(mFacebook.isSessionValid() ?
-                View.VISIBLE :
-                View.INVISIBLE);
+		setContentView(R.layout.main);
+		mLoginButton = (LoginButton) findViewById(R.id.login);
+		mText = (TextView) Example.this.findViewById(R.id.txt);
+		mRequestButton = (Button) findViewById(R.id.requestButton);
+		mPostButton = (Button) findViewById(R.id.postButton);
+		mDeleteButton = (Button) findViewById(R.id.deletePostButton);
+		mUploadButton = (Button) findViewById(R.id.uploadButton);
 
-        mUploadButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                Bundle params = new Bundle();
-                params.putString("method", "photos.upload");
 
-                URL uploadFileUrl = null;
-                try {
-                    uploadFileUrl = new URL(
-                        "http://www.facebook.com/images/devsite/iphone_connect_btn.jpg");
-                } catch (MalformedURLException e) {
-                	e.printStackTrace();
-                }
-                try {
-                    HttpURLConnection conn= (HttpURLConnection)uploadFileUrl.openConnection();
-                    conn.setDoInput(true);
-                    conn.connect();
-                    int length = conn.getContentLength();
+		getBudgetGraph = (Button) findViewById(R.id.getBudgetGraph);
+		getSplitBill = (Button) findViewById(R.id.getSplitBill);
+		getLoanBorrow = (Button) findViewById(R.id.getLoanBorrow);
 
-                    byte[] imgData =new byte[length];
-                    InputStream is = conn.getInputStream();
-                    is.read(imgData);
-                    params.putByteArray("picture", imgData);
 
-                } catch  (IOException e) {
-                    e.printStackTrace();
-                }
 
-                mAsyncRunner.request(null, params, "POST",
-                        new SampleUploadListener(), null);
-            }
-        });
-        mUploadButton.setVisibility(mFacebook.isSessionValid() ?
-                View.VISIBLE :
-                View.INVISIBLE);
+		mFacebook = new Facebook(APP_ID);
+		mAsyncRunner = new AsyncFacebookRunner(mFacebook);
 
-        mPostButton.setOnClickListener(new OnClickListener() {
-            public void onClick(View v) {
-                mFacebook.dialog(Example.this, "feed",
-                        new SampleDialogListener());
-            }
-        });
-        mPostButton.setVisibility(mFacebook.isSessionValid() ?
-                View.VISIBLE :
-                View.INVISIBLE);
-    }
+		SessionStore.restore(mFacebook, this);
+		SessionEvents.addAuthListener(new SampleAuthListener());
+		SessionEvents.addLogoutListener(new SampleLogoutListener());
+		mLoginButton.init(this, mFacebook);
 
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode,
-                                    Intent data) {
-        mFacebook.authorizeCallback(requestCode, resultCode, data);
-    }
+		getBudgetGraph.setOnClickListener(new OnClickListener(){
+			
+			public void onClick(View v){
+				Log.e("Example", "Testing getBudgetGraph()");
+				Intent intent = new BudgetPieChart().execute(context);
+				startActivity(intent);	
+			}
 
-    public class SampleAuthListener implements AuthListener {
+		});
+		getBudgetGraph.setVisibility(mFacebook.isSessionValid() ?
+				View.VISIBLE :
+					View.INVISIBLE);
+		//        
+		//        getSplitBill
+		//        getLoanBorrow
 
-        public void onAuthSucceed() {
-            mText.setText("You have logged in! ");
-            mRequestButton.setVisibility(View.VISIBLE);
-            mUploadButton.setVisibility(View.VISIBLE);
-            mPostButton.setVisibility(View.VISIBLE);
-        }
+		getSplitBill.setOnClickListener(new OnClickListener(){
 
-        public void onAuthFail(String error) {
-            mText.setText("Login Failed: " + error);
-        }
-    }
+			public void onClick(View v){
+				Intent intent = new BudgetPieChart().execute(context);
+				startActivity(intent);	
+			}
 
-    public class SampleLogoutListener implements LogoutListener {
-        public void onLogoutBegin() {
-            mText.setText("Logging out...");
-        }
+		});
 
-        public void onLogoutFinish() {
-            mText.setText("You have logged out! ");
-            mRequestButton.setVisibility(View.INVISIBLE);
-            mUploadButton.setVisibility(View.INVISIBLE);
-            mPostButton.setVisibility(View.INVISIBLE);
-        }
-    }
+		getSplitBill.setVisibility(mFacebook.isSessionValid() ?
+				View.VISIBLE :
+					View.INVISIBLE);
 
-    public class SampleRequestListener extends BaseRequestListener {
 
-        public void onComplete(final String response, final Object state) {
-            try {
-                // process the response here: executed in background thread
-                Log.d("Facebook-Example", "Response: " + response.toString());
-                JSONObject json = Util.parseJson(response);
-                final String name = json.getString("name");
+		getLoanBorrow.setOnClickListener(new OnClickListener(){
 
-                // then post the processed result back to the UI thread
-                // if we do not do this, an runtime exception will be generated
-                // e.g. "CalledFromWrongThreadException: Only the original
-                // thread that created a view hierarchy can touch its views."
-                Example.this.runOnUiThread(new Runnable() {
-                    public void run() {
-                        mText.setText("Hello there, " + name + "!");
-                    }
-                });
-            } catch (JSONException e) {
-                Log.w("Facebook-Example", "JSON Error in response");
-            } catch (FacebookError e) {
-                Log.w("Facebook-Example", "Facebook Error: " + e.getMessage());
-            }
-        }
-    }
+			public void onClick(View v){
+				Intent intent = new BudgetPieChart().execute(context);
+				startActivity(intent);	
+			}
 
-    public class SampleUploadListener extends BaseRequestListener {
+		});
+		getLoanBorrow.setVisibility(mFacebook.isSessionValid() ?
+				View.VISIBLE :
+					View.INVISIBLE);
 
-        public void onComplete(final String response, final Object state) {
-            try {
-                // process the response here: (executed in background thread)
-                Log.d("Facebook-Example", "Response: " + response.toString());
-                JSONObject json = Util.parseJson(response);
-                final String src = json.getString("src");
+		mRequestButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				mAsyncRunner.request("me", new SampleRequestListener());
+			}
+		});
+//		mRequestButton.setVisibility(mFacebook.isSessionValid() ?
+//				View.VISIBLE :
+//					View.INVISIBLE);
 
-                // then post the processed result back to the UI thread
-                // if we do not do this, an runtime exception will be generated
-                // e.g. "CalledFromWrongThreadException: Only the original
-                // thread that created a view hierarchy can touch its views."
-                Example.this.runOnUiThread(new Runnable() {
-                    public void run() {
-                        mText.setText("Hello there, photo has been uploaded at \n" + src);
-                    }
-                });
-            } catch (JSONException e) {
-                Log.w("Facebook-Example", "JSON Error in response");
-            } catch (FacebookError e) {
-                Log.w("Facebook-Example", "Facebook Error: " + e.getMessage());
-            }
-        }
-    }
-    public class WallPostRequestListener extends BaseRequestListener {
+		mUploadButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				Bundle params = new Bundle();
+				params.putString("method", "photos.upload");
 
-        public void onComplete(final String response, final Object state) {
-            Log.d("Facebook-Example", "Got response: " + response);
-            String message = "<empty>";
-            try {
-                JSONObject json = Util.parseJson(response);
-                message = json.getString("message");
-            } catch (JSONException e) {
-                Log.w("Facebook-Example", "JSON Error in response");
-            } catch (FacebookError e) {
-                Log.w("Facebook-Example", "Facebook Error: " + e.getMessage());
-            }
-            final String text = "Your Wall Post: " + message;
-            Example.this.runOnUiThread(new Runnable() {
-                public void run() {
-                    mText.setText(text);
-                }
-            });
-        }
-    }
+				URL uploadFileUrl = null;
+				try {
+					uploadFileUrl = new URL(
+					"http://www.facebook.com/images/devsite/iphone_connect_btn.jpg");
+				} catch (MalformedURLException e) {
+					e.printStackTrace();
+				}
+				try {
+					HttpURLConnection conn= (HttpURLConnection)uploadFileUrl.openConnection();
+					conn.setDoInput(true);
+					conn.connect();
+					int length = conn.getContentLength();
 
-    public class WallPostDeleteListener extends BaseRequestListener {
+					byte[] imgData =new byte[length];
+					InputStream is = conn.getInputStream();
+					is.read(imgData);
+					params.putByteArray("picture", imgData);
 
-        public void onComplete(final String response, final Object state) {
-            if (response.equals("true")) {
-                Log.d("Facebook-Example", "Successfully deleted wall post");
-                Example.this.runOnUiThread(new Runnable() {
-                    public void run() {
-                        mDeleteButton.setVisibility(View.INVISIBLE);
-                        mText.setText("Deleted Wall Post");
-                    }
-                });
-            } else {
-                Log.d("Facebook-Example", "Could not delete wall post");
-            }
-        }
-    }
+				} catch  (IOException e) {
+					e.printStackTrace();
+				}
 
-    public class SampleDialogListener extends BaseDialogListener {
+				mAsyncRunner.request(null, params, "POST",
+						new SampleUploadListener(), null);
+			}
+		});
+//		mUploadButton.setVisibility(mFacebook.isSessionValid() ?
+//				View.VISIBLE :
+//					View.INVISIBLE);
 
-        public void onComplete(Bundle values) {
-            final String postId = values.getString("post_id");
-            if (postId != null) {
-                Log.d("Facebook-Example", "Dialog Success! post_id=" + postId);
-                mAsyncRunner.request(postId, new WallPostRequestListener());
-                mDeleteButton.setOnClickListener(new OnClickListener() {
-                    public void onClick(View v) {
-                        mAsyncRunner.request(postId, new Bundle(), "DELETE",
-                                new WallPostDeleteListener(), null);
-                    }
-                });
-                mDeleteButton.setVisibility(View.VISIBLE);
-            } else {
-                Log.d("Facebook-Example", "No wall post made");
-            }
-        }
-    }
+		mPostButton.setOnClickListener(new OnClickListener() {
+			public void onClick(View v) {
+				mFacebook.dialog(Example.this, "feed",
+						new SampleDialogListener());
+			}
+		});
+//		mPostButton.setVisibility(mFacebook.isSessionValid() ?
+//				View.VISIBLE :
+//					View.INVISIBLE);
+	}
+
+	@Override
+	protected void onActivityResult(int requestCode, int resultCode,
+			Intent data) {
+		mFacebook.authorizeCallback(requestCode, resultCode, data);
+	}
+
+	public class SampleAuthListener implements AuthListener {
+
+		public void onAuthSucceed() {
+			mText.setText("You have logged in! ");
+//			mRequestButton.setVisibility(View.VISIBLE);
+//			mUploadButton.setVisibility(View.VISIBLE);
+//			mPostButton.setVisibility(View.VISIBLE);
+			getBudgetGraph.setVisibility(View.VISIBLE);
+			getSplitBill.setVisibility(View.VISIBLE);
+			getLoanBorrow.setVisibility(View.VISIBLE);
+		}
+
+		public void onAuthFail(String error) {
+			mText.setText("Login Failed: " + error);
+		}
+	}
+
+	public class SampleLogoutListener implements LogoutListener {
+		public void onLogoutBegin() {
+			mText.setText("Logging out...");
+		}
+
+		public void onLogoutFinish() {
+			mText.setText("You have logged out! ");
+			mRequestButton.setVisibility(View.INVISIBLE);
+			mUploadButton.setVisibility(View.INVISIBLE);
+			mPostButton.setVisibility(View.INVISIBLE);
+			getBudgetGraph.setVisibility(View.INVISIBLE);
+			getSplitBill.setVisibility(View.INVISIBLE);
+			getLoanBorrow.setVisibility(View.INVISIBLE);
+		}
+	}
+
+	public class SampleRequestListener extends BaseRequestListener {
+
+		public void onComplete(final String response, final Object state) {
+			try {
+				// process the response here: executed in background thread
+				Log.d("Facebook-Example", "Response: " + response.toString());
+				JSONObject json = Util.parseJson(response);
+				final String name = json.getString("name");
+
+				// then post the processed result back to the UI thread
+				// if we do not do this, an runtime exception will be generated
+				// e.g. "CalledFromWrongThreadException: Only the original
+				// thread that created a view hierarchy can touch its views."
+				Example.this.runOnUiThread(new Runnable() {
+					public void run() {
+						mText.setText("Hello there, " + name + "!");
+					}
+				});
+			} catch (JSONException e) {
+				Log.w("Facebook-Example", "JSON Error in response");
+			} catch (FacebookError e) {
+				Log.w("Facebook-Example", "Facebook Error: " + e.getMessage());
+			}
+		}
+	}
+
+	public class SampleUploadListener extends BaseRequestListener {
+
+		public void onComplete(final String response, final Object state) {
+			try {
+				// process the response here: (executed in background thread)
+				Log.d("Facebook-Example", "Response: " + response.toString());
+				JSONObject json = Util.parseJson(response);
+				final String src = json.getString("src");
+
+				// then post the processed result back to the UI thread
+				// if we do not do this, an runtime exception will be generated
+				// e.g. "CalledFromWrongThreadException: Only the original
+				// thread that created a view hierarchy can touch its views."
+				Example.this.runOnUiThread(new Runnable() {
+					public void run() {
+						mText.setText("Hello there, photo has been uploaded at \n" + src);
+					}
+				});
+			} catch (JSONException e) {
+				Log.w("Facebook-Example", "JSON Error in response");
+			} catch (FacebookError e) {
+				Log.w("Facebook-Example", "Facebook Error: " + e.getMessage());
+			}
+		}
+	}
+	public class WallPostRequestListener extends BaseRequestListener {
+
+		public void onComplete(final String response, final Object state) {
+			Log.d("Facebook-Example", "Got response: " + response);
+			String message = "<empty>";
+			try {
+				JSONObject json = Util.parseJson(response);
+				message = json.getString("message");
+			} catch (JSONException e) {
+				Log.w("Facebook-Example", "JSON Error in response");
+			} catch (FacebookError e) {
+				Log.w("Facebook-Example", "Facebook Error: " + e.getMessage());
+			}
+			final String text = "Your Wall Post: " + message;
+			Example.this.runOnUiThread(new Runnable() {
+				public void run() {
+					mText.setText(text);
+				}
+			});
+		}
+	}
+
+	public class WallPostDeleteListener extends BaseRequestListener {
+
+		public void onComplete(final String response, final Object state) {
+			if (response.equals("true")) {
+				Log.d("Facebook-Example", "Successfully deleted wall post");
+				Example.this.runOnUiThread(new Runnable() {
+					public void run() {
+						mDeleteButton.setVisibility(View.INVISIBLE);
+						mText.setText("Deleted Wall Post");
+					}
+				});
+			} else {
+				Log.d("Facebook-Example", "Could not delete wall post");
+			}
+		}
+	}
+
+	public class SampleDialogListener extends BaseDialogListener {
+
+		public void onComplete(Bundle values) {
+			final String postId = values.getString("post_id");
+			if (postId != null) {
+				Log.d("Facebook-Example", "Dialog Success! post_id=" + postId);
+				mAsyncRunner.request(postId, new WallPostRequestListener());
+				mDeleteButton.setOnClickListener(new OnClickListener() {
+					public void onClick(View v) {
+						mAsyncRunner.request(postId, new Bundle(), "DELETE",
+								new WallPostDeleteListener(), null);
+					}
+				});
+				mDeleteButton.setVisibility(View.VISIBLE);
+			} else {
+				Log.d("Facebook-Example", "No wall post made");
+			}
+		}
+	}
 
 }
