@@ -1,4 +1,4 @@
-package com.example;
+package com.example.chupacabra;
 
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook.DialogListener;

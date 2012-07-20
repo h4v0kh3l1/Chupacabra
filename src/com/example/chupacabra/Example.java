@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example;
+package com.example.chupacabra;
 
 //Jeremy Colwick was Here!
 
@@ -25,6 +25,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.achartengine.ChartFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -36,6 +37,7 @@ import android.util.Log;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.SessionEvents.AuthListener;
@@ -63,6 +65,8 @@ public class Example extends Activity {
 	private Button getSplitBill;
 	private Button getLoanBorrow;
 
+	private ImageView chart;
+	
 	private Facebook mFacebook;
 	private AsyncFacebookRunner mAsyncRunner;
 
@@ -75,6 +79,8 @@ public class Example extends Activity {
 		super.onCreate(savedInstanceState);
 		context = this;
 
+		
+		
 		if (APP_ID == null) {
 			Util.showAlert(this, "Warning", "Facebook Applicaton ID must be " +
 			"specified before running this example: see Example.java");
@@ -87,8 +93,11 @@ public class Example extends Activity {
 		mPostButton = (Button) findViewById(R.id.postButton);
 		mDeleteButton = (Button) findViewById(R.id.deletePostButton);
 		mUploadButton = (Button) findViewById(R.id.uploadButton);
-
-
+		
+		chart = (ImageView) findViewById(R.id.chartImage);
+		
+		
+		
 		getBudgetGraph = (Button) findViewById(R.id.getBudgetGraph);
 		getSplitBill = (Button) findViewById(R.id.getSplitBill);
 		getLoanBorrow = (Button) findViewById(R.id.getLoanBorrow);
@@ -107,12 +116,16 @@ public class Example extends Activity {
 			
 			public void onClick(View v){
 				Log.e("Example", "Testing getBudgetGraph()");
-				Intent intent = new BudgetPieChart().execute(context);
+				
+				Intent intent = new Intent(context, BudgetOverview.class);
 				startActivity(intent);	
 			}
 
 		});
 		getBudgetGraph.setVisibility(mFacebook.isSessionValid() ?
+				View.VISIBLE :
+					View.INVISIBLE);
+		chart.setVisibility(mFacebook.isSessionValid() ?
 				View.VISIBLE :
 					View.INVISIBLE);
 		//        
@@ -216,6 +229,7 @@ public class Example extends Activity {
 			getBudgetGraph.setVisibility(View.VISIBLE);
 			getSplitBill.setVisibility(View.VISIBLE);
 			getLoanBorrow.setVisibility(View.VISIBLE);
+			chart.setVisibility(View.VISIBLE);
 		}
 
 		public void onAuthFail(String error) {
@@ -236,6 +250,8 @@ public class Example extends Activity {
 			getBudgetGraph.setVisibility(View.INVISIBLE);
 			getSplitBill.setVisibility(View.INVISIBLE);
 			getLoanBorrow.setVisibility(View.INVISIBLE);
+			chart.setVisibility(View.INVISIBLE);
+
 		}
 	}
 

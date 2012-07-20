@@ -1,0 +1,452 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="#FFFFFF"
+    android:orientation="vertical" 
+     >
+
+   <TableLayout
+            android:id="@+id/tableLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingBottom="4dip"
+            android:textColor="#000000" >
+
+            <TableRow
+                android:id="@+id/tableRowTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="0dip"
+                android:textColor="#000000"
+                android:background="#002d61"
+                android:textStyle="bold" >
+
+                <TextView
+                    android:id="@+id/upcomingBillTitle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".4"
+                    android:background="#002d61"
+                    android:gravity="center"
+                    android:text="Bills"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/dueDateTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="#002d61"
+                    android:gravity="center"
+                    android:text="Due"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/amountTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:background="#002d61"
+                    android:gravity="center"
+                    android:text="Amount"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/barTitle"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#000000"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dip"
+                android:textColor="#000000" >
+
+
+                <TextView
+                    android:id="@+id/imageAlamo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight=".4"
+                    android:background="#FFFFFF"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:text="Rent"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/telephone1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="Aug1"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/website1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="$400"
+                    android:textColor="#000000" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/bar1"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#000000"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+           <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dip"
+                android:textColor="#000000" >
+
+
+                <TextView
+                    android:id="@+id/imageAlamo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight=".4"
+                    android:background="#FFFFFF"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:text="Electricity"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/telephone1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="Aug4"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/website1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="~$38"
+                    android:textColor="#000000" />
+            </TableRow>
+            
+            <TextView
+                android:id="@+id/bar2"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#000000"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dip"
+                android:textColor="#000000" >
+
+
+                <TextView
+                    android:id="@+id/imageAlamo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight=".4"
+                    android:background="#FFFFFF"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:text="Car"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/telephone1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="Aug15"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/website1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="$221"
+                    android:textColor="#000000" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/bar3"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#000000"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dip"
+                android:textColor="#000000" >
+
+
+                <TextView
+                    android:id="@+id/imageAlamo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight=".4"
+                    android:background="#FFFFFF"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:text="Internet"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/telephone1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="Aug16"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/website1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="$37"
+                    android:textColor="#000000" />
+            </TableRow>
+            
+          
+
+            <TableRow
+                android:id="@+id/tableRowTitle"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="10dip"
+                android:textColor="#000000"
+                android:textStyle="bold"
+                android:background="#002d61" >
+
+                <TextView
+                    android:id="@+id/upcomingBillTitle"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight=".4"
+                    android:background="#002d61"
+                    android:gravity="center"
+                    android:text="Income"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/dueDateTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:background="#002d61"
+                    android:gravity="center"
+                    android:text="PayDate"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/amountTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_weight=".2"
+                    android:background="#002d61"
+                    android:gravity="center"
+                    android:text="Amount"
+                    android:textColor="#FFFFFF"
+                    android:textStyle="bold" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/barTitle"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#000000"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dip"
+                android:textColor="#000000"
+                 >
+
+
+                <TextView
+                    android:id="@+id/imageAlamo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight=".4"
+                    android:background="#FFFFFF"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:text="Intuit"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/telephone1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="July27"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/website1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="$1700"
+                    android:textColor="#000000" />
+            </TableRow>
+
+            <TextView
+                android:id="@+id/bar1"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#000000"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+           <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dip"
+                android:textColor="#000000" >
+
+
+                <TextView
+                    android:id="@+id/imageAlamo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight=".4"
+                    android:background="#FFFFFF"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:text="Intuit"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/telephone1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="Aug10"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/website1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="1700"
+                    android:textColor="#000000" />
+            </TableRow>
+            
+            <TextView
+                android:id="@+id/bar2"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#000000"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            <TableRow
+                android:id="@+id/tableRow1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="4dip"
+                android:textColor="#000000" >
+
+
+                <TextView
+                    android:id="@+id/imageAlamo"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="left"
+                    android:layout_weight=".4"
+                    android:background="#FFFFFF"
+                    android:focusable="true"
+                    android:gravity="left"
+                    android:text="Blood Donation"
+                    android:textColor="#000000"/>
+
+                <TextView
+                    android:id="@+id/telephone1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="Aug11"
+                    android:textColor="#000000" />
+
+                <TextView
+                    android:id="@+id/website1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight=".2"
+                    android:gravity="center"
+                    android:text="$40"
+                    android:textColor="#000000" />
+            </TableRow>
+
+            
+           
+            <TextView
+                android:id="@+id/bar6"
+                android:layout_width="match_parent"
+                android:layout_height="1dip"
+                android:background="#000000"
+                android:gravity="center"
+                android:textColor="#000000" />
+
+            
+            
+            
+            
+            
+        </TableLayout>
+</LinearLayout>

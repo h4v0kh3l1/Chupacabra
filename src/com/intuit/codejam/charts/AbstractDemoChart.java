@@ -157,8 +157,9 @@ public abstract class AbstractDemoChart implements IDemoChart {
   protected CategorySeries buildCategoryDataset(String title, double[] values) {
     CategorySeries series = new CategorySeries(title);
     int k = 0;
+    String[] categories = {"Entertainment", "Bills", "Groceries", "Junk Food", "Gas"}; 
     for (double value : values) {
-      series.add("Project " + ++k, value);
+      series.add(categories[k++ % categories.length], value);
     }
 
     return series;

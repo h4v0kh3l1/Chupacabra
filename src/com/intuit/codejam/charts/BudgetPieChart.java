@@ -54,9 +54,17 @@ public class BudgetPieChart extends AbstractDemoChart {
     double[] values = new double[] { 12, 14, 11, 10, 19 };
     int[] colors = new int[] { Color.BLUE, Color.GREEN, Color.MAGENTA, Color.YELLOW, Color.CYAN };
     DefaultRenderer renderer = buildCategoryRenderer(colors);
-    renderer.setZoomButtonsVisible(true);
-    renderer.setZoomEnabled(true);
+    //renderer.setZoomButtonsVisible(true);
+    //renderer.setZoomEnabled(true);
     renderer.setChartTitleTextSize(20);
+    renderer.setBackgroundColor(Color.WHITE);
+    renderer.setApplyBackgroundColor(true);
+    renderer.setLabelsColor(Color.BLACK);
+    //renderer.setFitLegend(true);
+    renderer.setShowLegend(false);
+    renderer.setScale((float) 0.5);
+    renderer.setStartAngle((float) 0.5);
+   
     return ChartFactory.getPieChartIntent(context, buildCategoryDataset("Project budget", values),
         renderer, "Budget");
   }

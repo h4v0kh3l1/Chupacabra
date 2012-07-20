@@ -14,7 +14,7 @@
  * limitations under the License.
  */
 
-package com.example;
+package com.example.chupacabra;
 
 import java.util.LinkedList;
 

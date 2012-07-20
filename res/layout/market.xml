@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" 
+    >
+    <Button android:id="@+id/myBooksButton"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:text="@string/books"
+	    />
+    <Button android:id="@+id/myCdsButton"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/myBooksButton"
+	    android:text="@string/cds"
+	    />
+	<Button android:id="@+id/myApparelButton"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/myCdsButton"
+	    android:text="@string/apparel"
+	    />
+	<Button android:id="@+id/myOthersButton"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:layout_below="@id/myApparelButton"
+	    android:text="@string/others"
+	    />
+</RelativeLayout>

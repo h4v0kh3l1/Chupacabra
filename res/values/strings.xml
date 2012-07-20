@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">CodeJamStarter</string>
     <string name="request">Request!</string>
     <string name="hello">Welcome to Chupacabra</string>
     <string name="upload">Upload Photo</string><string name="post">Wall Post!</string>
@@ -8,4 +7,25 @@
     <string name="getBudgetGraph">Budgeting</string>
     <string name="getSplitBill">Split A Bill</string>
     <string name="getLoanBorrow">Barter Tool</string>
+    <string name="app_name">Chupacabra</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="menu_settings">Settings</string>
+    <string name="title_activity_main">Barter Up</string>
+    <string name="myMarket">My Market</string>
+    <string name="outflow">Outflow</string>
+    <string name="inflow">Inflow</string>
+	<string name="back">Back</string>
+	<string name="market">Market</string>
+	<string name="books">Books</string>
+	<string name="cds">CDs</string>
+	<string name="apparel">Apparel</string>
+	<string name="others">Others</string>
+    <string name="book_list">Books</string>
+    <string name="add">Add</string>
+    <string name="delete">Delete</string>
+    <string name="save">Save</string>
+    <string name="cancel">Cancel</string>
+    <string name="add_book">Add book</string>
+    <string name="delete_book">Delete book</string>
+    
 </resources>
