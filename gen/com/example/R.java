@@ -23,6 +23,9 @@ public final class R {
     }
     public static final class id {
         public static final int deletePostButton=0x7f050005;
+        public static final int getBudgetGraph=0x7f050006;
+        public static final int getLoanBorrow=0x7f050008;
+        public static final int getSplitBill=0x7f050007;
         public static final int login=0x7f050000;
         public static final int postButton=0x7f050004;
         public static final int requestButton=0x7f050003;
@@ -35,6 +38,9 @@ public final class R {
     public static final class string {
         public static final int app_name=0x7f040000;
         public static final int delete=0x7f040005;
+        public static final int getBudgetGraph=0x7f040006;
+        public static final int getLoanBorrow=0x7f040008;
+        public static final int getSplitBill=0x7f040007;
         public static final int hello=0x7f040002;
         public static final int post=0x7f040004;
         public static final int request=0x7f040001;

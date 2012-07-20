@@ -29,6 +29,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import android.app.Activity;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -43,7 +44,7 @@ import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
 import com.facebook.android.Util;
-
+import com.intuit.codejam.charts.BudgetPieChart;
 
 public class Example extends Activity {
 
@@ -57,14 +58,22 @@ public class Example extends Activity {
     private Button mPostButton;
     private Button mDeleteButton;
     private Button mUploadButton;
+    
+    private Button getBudgetGraph;
+    private Button getSplitBill;
+    private Button getLoanBorrow;
 
     private Facebook mFacebook;
     private AsyncFacebookRunner mAsyncRunner;
+    
+    private Context context;
+    
 
     /** Called when the activity is first created. */
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        context = this;
 
         if (APP_ID == null) {
             Util.showAlert(this, "Warning", "Facebook Applicaton ID must be " +
@@ -78,7 +87,14 @@ public class Example extends Activity {
         mPostButton = (Button) findViewById(R.id.postButton);
         mDeleteButton = (Button) findViewById(R.id.deletePostButton);
         mUploadButton = (Button) findViewById(R.id.uploadButton);
-
+        
+        
+        this.getBudgetGraph = (Button) findViewById(R.id.getBudgetGraph);
+        this.getSplitBill = (Button) findViewById(R.id.getSplitBill);
+        this.getLoanBorrow = (Button) findViewById(R.id.getLoanBorrow);
+        
+        
+        
        	mFacebook = new Facebook(APP_ID);
        	mAsyncRunner = new AsyncFacebookRunner(mFacebook);
 
@@ -87,6 +103,21 @@ public class Example extends Activity {
         SessionEvents.addLogoutListener(new SampleLogoutListener());
         mLoginButton.init(this, mFacebook);
 
+        getBudgetGraph.setOnClickListener(new OnClickListener(){
+        	
+        	public void onClick(View v){
+        		Intent intent = new BudgetPieChart().execute(context);
+        		startActivity(intent);	
+        	}
+        	
+        });
+        
+//        
+//        getSplitBill
+//        getLoanBorrow
+
+        
+        
         mRequestButton.setOnClickListener(new OnClickListener() {
             public void onClick(View v) {
             	mAsyncRunner.request("me", new SampleRequestListener());
