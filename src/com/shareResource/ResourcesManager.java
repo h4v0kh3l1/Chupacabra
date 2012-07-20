@@ -10,44 +10,58 @@ import java.util.*;
  * To change this template use File | Settings | File Templates.
  */
 public class ResourcesManager {
-    Map<ResourceType, ResourceManager> managers;
-    Collection<Person> groupFriends;
-    Map<String, ResourceType> resourceTypes;
+    private Map<String, ResourceManager> managers;
+    private Collection<Person> groupFriends;
+    private List<String> resourceTypes;
 
     public ResourcesManager() {
-        managers = new HashMap<ResourceType, ResourceManager>();
-        resourceTypes = new HashMap<String, ResourceType>();
+        managers = new HashMap<String, ResourceManager>();
+        resourceTypes = new ArrayList<String>();
+    }
+    public ResourcesManager(boolean populate){
+        managers = new HashMap<String , ResourceManager>();
+        resourceTypes = new ArrayList<String>();
+        if (populate){
+            //Populate with static data
+
+        }
     }
 
     public void addNewResourceType(String newType){
-        if (!resourceTypes.containsKey(newType)){
-            ResourceType newResource = new ResourceType(newType);
-            resourceTypes.put(newType, newResource);
-            managers.put(newResource, new ResourceManager(newType));
+        if (!isResourceListed(newType)){
+            resourceTypes.add(newType);
+            managers.put(newType, new ResourceManager(newType));
         }
     }
 
     public void removeResourceType(String resourceType){//TODO complete
+        if (isResourceListed(resourceType)){
 
+        }
     }
 
     public void addNewResource(String newResource, Person resourceOwner){
-        managers.get(resourceTypes.get(newResource)).addResource(resourceOwner);
+        managers.get(newResource).addResource(resourceOwner);
     }
     public void removeResource(String resource, Person resourceOwner){
-        managers.get(resourceTypes.get(resource)).removeResource(resourceOwner);
+        managers.get(resource).removeResource(resourceOwner);
     }
     public void addRequest(String resource, Person person, Date dayRequestedBy){
         Calendar c = new GregorianCalendar();
-        if (resourceTypes.containsKey(resource)){
-            managers.get(resourceTypes.get(resource)).addRequest(person, dayRequestedBy);
+        if (resourceTypes.contains(resource)){
+            managers.get(resource).addRequest(person, dayRequestedBy);
         } else {
             throwDNEError();
         }
     }
-    public void handOffResource(String resource, Person oldUser){//TODO complete
+    public void addRequest(String resource, Person person){
+        if (resourceTypes.contains(resource)){
+            managers.get(resource).addRequest(person);
+        }
+    }
+    public void handOffResource(String resource, Person oldUser){
         try {
-            managers.get(resourceTypes.get(resource)).next(oldUser);
+            managers.get(resource).next(oldUser);
         } catch (NullPointerException e){
 
         } catch (Exception e){
@@ -55,7 +69,16 @@ public class ResourcesManager {
         }
     }
     public void shareResource(String resource,Person user, Set<Person> otherUsers){
-        managers.get(resourceTypes.get(resource)).share(user, otherUsers);
+        managers.get(resource).share(user, otherUsers);
+    }
+    public boolean isResourceListed(String resource){
+        return resourceTypes.contains(resource);
+    }
+    public List<String> getResourceTypes(){
+        return resourceTypes;
+    }
+    public ResourceManager getResourceManager(String resource) {
+        return managers.get(resource);
     }
     public void throwDNEError(){
 

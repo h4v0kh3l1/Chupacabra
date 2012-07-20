@@ -12,12 +12,13 @@ import java.util.Set;
  * Time: 3:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Resource extends ResourceType{
+public class Resource {
+    private String resourceName;
     private Person owner;
     private Set<Person> currentUsers;
 
-    Resource(String resourceName, Person pOwner){
-        super(resourceName);
+    Resource(String pResourceName, Person pOwner){
+        resourceName = pResourceName;
         owner = pOwner;
         currentUsers = new HashSet<Person>();
         currentUsers.add(owner);

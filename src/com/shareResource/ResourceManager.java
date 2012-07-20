@@ -12,6 +12,7 @@ import java.util.concurrent.PriorityBlockingQueue;
  */
 class ResourceManager {
     private String resourceName;
+    private String description; //or any other metadata we want to store. Be sure to add to constructor.
     private Set<Resource> availableResources;
     private Queue<WaitlistUnit> waitlist;
     private class WaitlistUnit implements Comparable<WaitlistUnit>{
@@ -20,6 +21,15 @@ class ResourceManager {
         Date requestDate;
         private final int MSINDAY = 86400000;
 
+        WaitlistUnit(Person pWaiter){
+            Calendar c = new GregorianCalendar();
+            waiter = pWaiter;
+            startDate = c.getTime();
+            Calendar d = new GregorianCalendar();
+            d.setTime(startDate);
+            d.add(Calendar.DATE, 60);
+            requestDate = d.getTime();
+        }
         WaitlistUnit(Person pWaiter, Date pRequestDate) {
             Calendar c = new GregorianCalendar();
             waiter = pWaiter;
@@ -47,8 +57,10 @@ class ResourceManager {
     }
 
     void addRequest(Person requester, Date dayRequestedBy){
-        Person r = requester;
         waitlist.add(new WaitlistUnit(requester, dayRequestedBy));
+    }
+    void addRequest(Person requester){
+        waitlist.add(new WaitlistUnit(requester));
     }
     void addResource(Person owner){
         availableResources.add(new Resource(resourceName, owner));
@@ -86,5 +98,8 @@ class ResourceManager {
         if (targetRsc != null){
             targetRsc.addUsers(otherUsers);
         }
+    }
+    public Set<Resource> getAvailableResources(){
+        return availableResources;
     }
 }
