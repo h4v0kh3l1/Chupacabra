@@ -25,6 +25,7 @@ public class Books extends Activity implements OnClickListener{
 
 	ArrayList<Friend> friendList;
 	Intent intent;
+	ArrayList<Resource> myBookList;
 
 
 	@Override
@@ -49,7 +50,7 @@ public class Books extends Activity implements OnClickListener{
 	//Create bunch of static books and output those items as children to tablelayout in .xml layout
 	private void createStaticBookContent() {
 
-		ArrayList<Resource> myBookList = new ArrayList<Resource>();
+		myBookList = new ArrayList<Resource>();
 
 
 		String[] titles = {
@@ -108,6 +109,7 @@ public class Books extends Activity implements OnClickListener{
 			TableRow tr1 = new TableRow(this);
 			tr1.setLayoutParams(new LayoutParams( LayoutParams.FILL_PARENT,LayoutParams.WRAP_CONTENT));
 			TextView textview = new TextView(this);
+			textview.setTag("BookTitle");
 			textview.setText(myBookList.get(i).getResourceName());
 			textview.setTextColor(Color.BLACK);
 			//textview.getTextColors(R.color.)
@@ -115,8 +117,12 @@ public class Books extends Activity implements OnClickListener{
 			tr1.addView(textview);
 			
 			TextView textview2 = new TextView(this);
+			textview2.setTag("BookOwner");
 			textview2.setText(myBookList.get(i).getOwner().getName());
 			textview2.setTextColor(Color.BLACK);
+			
+			textview.setOnClickListener(this);
+			textview2.setOnClickListener(this);
 
 			//textview.getTextColors(R.color.)
 			//textview.setTextColor();
@@ -137,7 +143,17 @@ public class Books extends Activity implements OnClickListener{
 		else if(v.getId() == R.id.myDeleteButton){
 
 			handleDeleteButtonClick();
-		}	
+		}
+		else if(v.getTag().equals("BookTitle")){
+			Intent intent = new Intent(this, BookDetail.class);
+			
+			for (Resource r : myBookList){
+				if (r.getResourceName().equals(((TextView)v).getText())){
+					intent.putExtra("BookResource",r);
+				}
+			}
+			startActivity(intent);
+		}
 	}
 	private void handleAddButtonClick() {
 		Intent intent = new Intent(this, Add.class);

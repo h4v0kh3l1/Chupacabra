@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/white" >
+    
+    
+    
+    <TextView
+        android:id="@+id/bookTitle"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/black"
+        android:textSize="24sp"></TextView>
+        <TextView
+        android:id="@+id/bookOwner"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/black"></TextView>
+            <TextView
+        android:id="@+id/bookDescription"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textColor="@drawable/black"></TextView>
+        
+            <Button 
+	    android:id="@+id/bookReserve"
+	    android:text="Reserve"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textColor="@drawable/black"></Button>
+            
+	<Button 
+	    android:id="@+id/bookBack"
+	    android:layout_width="fill_parent"
+	    android:layout_height="wrap_content"
+	    android:textColor="@drawable/black"
+	    android:text="Previous"></Button>
+	
+</LinearLayout>

@@ -52,6 +52,8 @@
             android:label="@string/delete_book" />
         <activity android:name=".MyInflow" />
         <activity android:name=".MyOutflow" />
+        <activity android:name=".BookDetail" />
+        <activity android:name=".ReservationConfirmation" />
     </application>
 
 </manifest>

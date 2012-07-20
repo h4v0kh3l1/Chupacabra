@@ -1,5 +1,7 @@
 package com.shareResource;
 
+import java.io.Serializable;
+
 /**
  * Created with IntelliJ IDEA.
  * User: hwang4
@@ -7,7 +9,7 @@ package com.shareResource;
  * Time: 3:27 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Person {
+public class Person implements Serializable{
     private String name;
 
     public Person(String pName){

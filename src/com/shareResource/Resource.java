@@ -1,6 +1,6 @@
 package com.shareResource;
 
-import java.util.ArrayList;
+import java.io.Serializable;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -12,7 +12,7 @@ import java.util.Set;
  * Time: 3:19 PM
  * To change this template use File | Settings | File Templates.
  */
-public class Resource {
+public class Resource implements Serializable{
     private String resourceName;
     private Person owner;
     private Set<Person> currentUsers;
@@ -73,4 +73,5 @@ public class Resource {
 	public void setCurrentUsers(Set<Person> currentUsers) {
 		this.currentUsers = currentUsers;
 	}
+	
 }

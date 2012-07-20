@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+  
+    android:background="@drawable/white"
+    android:orientation="vertical" >
+
+    <TextView
+        android:id="@+id/congratsText"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="24sp"
+        android:textColor="@drawable/black"
+        android:layout_alignParentTop="true" />
+
+    <TextView
+        android:id="@+id/congratsMessage"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:textSize="18sp"
+        android:textColor="@drawable/black"
+        android:layout_below="@id/congratsText" />
+
+    <Button
+        android:id="@+id/acceptButton"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:text="Accept" 
+        android:layout_below="@id/congratsMessage"/>
+
+</RelativeLayout>
