@@ -8,9 +8,12 @@ package com.shareResource;
  * To change this template use File | Settings | File Templates.
  */
 class Person {
+    private String name;
 
-
-    Person(){
-
+    Person(String pName){
+        name = pName;
+    }
+    public String getName(){
+        return name;
     }
 }
