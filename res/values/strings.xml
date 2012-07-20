@@ -2,9 +2,10 @@
 <resources>
     <string name="app_name">CodeJamStarter</string>
     <string name="request">Request!</string>
-    <string name="hello">Hello World!</string>
+    <string name="hello">Welcome to Chupacabra</string>
     <string name="upload">Upload Photo</string><string name="post">Wall Post!</string>
     <string name="delete">Delete Post</string>
-
-
+    <string name="getBudgetGraph">Budgeting</string>
+    <string name="getSplitBill">Split A Bill</string>
+    <string name="getLoanBorrow">Barter Tool</string>
 </resources>
