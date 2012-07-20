@@ -21,7 +21,7 @@
 	
 	<Button android:id="@+id/getBudgetGraph"
         android:text="@string/getBudgetGraph"
-       
+        android:visibility="invisible"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" 
         android:paddingRight="20dp" 
