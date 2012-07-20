@@ -27,5 +27,6 @@
     <string name="cancel">Cancel</string>
     <string name="add_book">Add book</string>
     <string name="delete_book">Delete book</string>
+    <string name="getMarketPage">Check Market</string>
     
 </resources>

@@ -25,7 +25,6 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.achartengine.ChartFactory;
 import org.json.JSONException;
 import org.json.JSONObject;
 
@@ -40,8 +39,8 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.SessionEvents.AuthListener;
-import com.example.SessionEvents.LogoutListener;
+import com.example.chupacabra.SessionEvents.AuthListener;
+import com.example.chupacabra.SessionEvents.LogoutListener;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.Facebook;
 import com.facebook.android.FacebookError;
@@ -64,6 +63,7 @@ public class Example extends Activity {
 	private Button getBudgetGraph;
 	private Button getSplitBill;
 	private Button getLoanBorrow;
+	private Button getMarketButton;
 
 	private ImageView chart;
 	
@@ -101,7 +101,7 @@ public class Example extends Activity {
 		getBudgetGraph = (Button) findViewById(R.id.getBudgetGraph);
 		getSplitBill = (Button) findViewById(R.id.getSplitBill);
 		getLoanBorrow = (Button) findViewById(R.id.getLoanBorrow);
-
+		getMarketButton = (Button) findViewById(R.id.getMarketPage);
 
 
 		mFacebook = new Facebook(APP_ID);
@@ -122,7 +122,21 @@ public class Example extends Activity {
 			}
 
 		});
+		
+		getMarketButton.setOnClickListener(new OnClickListener(){
+			
+			public void onClick(View v){
+				Log.e("Example", "Testing getBudgetGraph()");
+				
+				Intent intent = new Intent(context, MyMarket.class);
+				startActivity(intent);	
+			}
+
+		});
 		getBudgetGraph.setVisibility(mFacebook.isSessionValid() ?
+				View.VISIBLE :
+					View.INVISIBLE);
+		getMarketButton.setVisibility(mFacebook.isSessionValid() ?
 				View.VISIBLE :
 					View.INVISIBLE);
 		chart.setVisibility(mFacebook.isSessionValid() ?
@@ -230,6 +244,7 @@ public class Example extends Activity {
 			getSplitBill.setVisibility(View.VISIBLE);
 			getLoanBorrow.setVisibility(View.VISIBLE);
 			chart.setVisibility(View.VISIBLE);
+			getMarketButton.setVisibility(View.VISIBLE);
 		}
 
 		public void onAuthFail(String error) {
@@ -251,6 +266,7 @@ public class Example extends Activity {
 			getSplitBill.setVisibility(View.INVISIBLE);
 			getLoanBorrow.setVisibility(View.INVISIBLE);
 			chart.setVisibility(View.INVISIBLE);
+			getMarketButton.setVisibility(View.INVISIBLE);
 
 		}
 	}

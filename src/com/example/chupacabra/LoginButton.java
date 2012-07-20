@@ -25,8 +25,8 @@ import android.util.AttributeSet;
 import android.view.View;
 import android.widget.ImageButton;
 
-import com.example.SessionEvents.AuthListener;
-import com.example.SessionEvents.LogoutListener;
+import com.example.chupacabra.SessionEvents.AuthListener;
+import com.example.chupacabra.SessionEvents.LogoutListener;
 import com.facebook.android.AsyncFacebookRunner;
 import com.facebook.android.DialogError;
 import com.facebook.android.Facebook;
